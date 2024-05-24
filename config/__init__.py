@@ -5,9 +5,9 @@ from pydantic import BaseModel
 import logging
 
 
-if not dotenv_values():
-    logging.error("No .env file found!")
-    raise Exception("No .env file found!")
+# if not dotenv_values():
+#     logging.error("No .env file found!")
+#     raise Exception("No .env file found!")
 
 load_dotenv(override=True)
 
