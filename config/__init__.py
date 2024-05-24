@@ -16,10 +16,10 @@ class Config(BaseModel):
     CORS_ORGINS: list[str] = ["*"]
 
     BOT_TOKEN: str = os.environ.get("BOT_TOKEN", "")
-    BOT_NAME: str = os.environ.get("BOT_NAME", "A2SV Community Helper Bot")
+    BOT_NAME: str = os.environ.get("BOT_NAME", "A2SV AI for Africa 2024 Hacakthon Assistant Bot")
     SERVICE_BASE_URL: str = os.environ.get(
         "SERVICE_BASE_URL",
-        "https://a2sv-community-telegram-bot-lylswf275a-uc.a.run.app",
+        "https://a2sv-generative-ai-hackathon-lylswf275a-zf.a.run.app",
     )
     WEBHOOK_PATH: str = f"{SERVICE_BASE_URL}/bot/{BOT_TOKEN}"
 
