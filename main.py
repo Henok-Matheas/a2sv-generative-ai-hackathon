@@ -7,7 +7,12 @@ from config import initial_config as config
 from fastapi.middleware.cors import CORSMiddleware
 from bot.bot import (bot, dp)
 from contextlib import asynccontextmanager
+from pydantic import BaseModel
+from chatbot.chat import ask
 
+class Request(BaseModel):
+    ip_address: str
+    query: str
 
 
 async def startup_event():
@@ -68,6 +73,18 @@ async def bot_webhook(update: dict):
     logging.debug(update)
     res = Update.model_validate(update, context={"bot": bot})
     await dp.feed_update(bot=bot, update=res)
+
+@app.post(f"/api/v1/chats")
+async def chat_api(request: Request):
+    """
+    Chat API endpoint
+
+    :param text: The text to be sent to the bot
+    """
+
+    response = ask(chat_id= request.ip_address, query= request.query)
+    logging.debug(request)
+    return {"message": response}
 
     
 async def run_local():
