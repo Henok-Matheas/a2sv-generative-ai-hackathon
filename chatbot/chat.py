@@ -97,7 +97,7 @@ def ask(chat_id: int, query: str, df: pd.DataFrame = df, model: str = GPT_MODEL,
     contexts.extend(current_contexts)
 
     content = """
-                Use the below texts about A2SV and the Hackathon as well as conversation history as context for answering questions. If the answer cannot be found in the articles, write "I could not find an answer."
+                Use the below texts about A2SV(Africa to Silicon Valley) and the Hackathon as well as conversation history as context for answering questions. If the answer cannot be found in the articles, write "I could not find an answer."
 
                 Articles about A2SV and the Hackathon it has prepared:
                 {contexts}
@@ -113,7 +113,7 @@ def ask(chat_id: int, query: str, df: pd.DataFrame = df, model: str = GPT_MODEL,
         response = client.chat.completions.create(
             model=model,
             messages= [INITIAL_CHATBOT_MESSAGE] + messages + [message],
-            temperature=0
+            temperature=0.0
         )
         response_message = response.choices[0].message.content
 
